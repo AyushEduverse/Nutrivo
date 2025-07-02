@@ -23,7 +23,9 @@ body {
     margin: 0;
     transition: background-color 0.3s, color 0.3s;
     overflow-x: hidden;
+    line-height: 1.6;
 }
+
 
 #particles-js {
     position: fixed;
@@ -171,6 +173,10 @@ input:checked + .slider:before {
 main {
     padding: 2rem 0;
     animation: slideInUp 0.8s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* Adds space between boxes */
 }
 
 main.container {
@@ -183,15 +189,70 @@ main.container {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--box-shadow);
-    margin-bottom: 2rem;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
     width: 100%;
     max-width: 550px;
     box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
 }
 
 .box:hover {
     transform: translateY(-5px);
+}
+
+.upload-box {
+    border: 2px dashed var(--border-color);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--box-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.upload-box:hover {
+    background-color: var(--hover-background);
+    border-color: var(--accent-color);
+}
+
+.upload-box .icon {
+    font-size: 50px;
+    color: var(--text-color-light);
+    margin-bottom: 15px;
+}
+
+.upload-box p {
+    font-size: 18px;
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+.camera-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    background-color: var(--box-background);
+}
+
+#camera-feed {
+    width: 100%;
+    display: block;
+}
+
+.controls {
+    padding: 15px;
+    text-align: center;
+    background-color: var(--box-background);
+    border-top: 1px solid var(--border-color);
+}
     box-shadow: var(--hover-shadow);
 }
 
@@ -200,32 +261,149 @@ main.container {
     color: var(--primary-color);
     text-align: center;
     margin-bottom: 1.5rem;
-}
-
-.camera-container {
+    font-size: 1.8rem;
     position: relative;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto 1rem;
-    border: 2px dashed #ccc;
-    border-radius: 10px;
-    overflow: hidden;
-    min-height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-#camera-feed, #captured-image, #canvas {
-    width: 100%;
-    height: auto;
+.box h2::after {
+    content: '';
     display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+    border-radius: 5px;
 }
 
-.controls {
+.upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    border: 2px dashed var(--primary-color);
+    border-radius: 15px;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(76, 175, 80, 0.05);
     text-align: center;
 }
 
+.upload-box:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+    transform: translateY(-2px);
+}
+
+.upload-box i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.upload-box p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+/* Define --primary-color-rgb for rgba usage */
+:root {
+    --primary-color-rgb: 76, 175, 80; /* RGB values for #4CAF50 */
+}
+
+body.dark-mode {
+    --primary-color-rgb: 102, 187, 106; /* RGB values for #66bb6a */
+}
+
+#feature-buttons .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+#feature-buttons .controls button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1rem;
+    height: 100px;
+}
+
+#feature-buttons .controls button i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+}
+
+#feature-buttons .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+#feature-buttons .controls button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1rem;
+    height: 100px;
+}
+
+#feature-buttons .controls button i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.camera-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem auto;
+    border: 1px solid var(--box-shadow);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+.camera-container video,
+.camera-container canvas,
+.camera-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.camera-container .hidden {
+    display: none;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.controls button {
+    flex-grow: 1;
+    min-width: 150px; /* Ensure buttons don't get too small */
+    max-width: 200px; /* Limit button width */
+}
 .button, button {
     background-color: var(--primary-color);
     color: white;
@@ -290,6 +468,77 @@ footer {
     background-color: var(--box-bg-color);
     box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
 }
+
+/* History Section */
+#history-container {
+    text-align: left;
+}
+
+#history-container h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    position: relative;
+}
+
+#history-container h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 0.5rem auto 0;
+    border-radius: 5px;
+}
+
+#history-container ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+#history-container li {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#history-container li:hover {
+    background-color: var(--box-bg-color);
+    transform: translateX(5px);
+}
+
+#history-container img {
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+}
+
+#history-container li div {
+    display: flex;
+    flex-direction: column;
+}
+
+#history-container li strong {
+    font-weight: 600;
+}
+
+#history-container li small {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.dark-mode #history-container li small {
+    color: #aaa;
+}
+
 
 @media (max-width: 768px) {
     #particles-js {

@@ -36,18 +36,23 @@
                     <canvas id="canvas" class="hidden"></canvas>
                     <img id="captured-image" src="#" alt="Captured Image" class="hidden">
                 </div>
+                <div class="upload-box">
+                    <input type="file" id="upload-image" accept="image/*" class="hidden">
+                    <label for="upload-image" id="upload-image-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & Drop or Click to Upload Image</p>
+                    </label>
+                </div>
                 <div class="controls">
                     <button id="start-camera"><i class="fas fa-camera"></i> Start Camera</button>
                     <button id="capture-image" class="hidden"><i class="fas fa-circle-camera"></i> Capture</button>
-                    <input type="file" id="upload-image" accept="image/*" class="hidden">
-                    <label for="upload-image" class="button"><i class="fas fa-upload"></i> Upload Image</label>
                 </div>
             </div>
 
             <div class="box hidden" id="analysis-result">
                 <h2>Analysis Result</h2>
+                <div id="loader" class="hidden"></div>
                 <div id="result-content">
-                    <div id="loader" class="hidden"></div>
                     <div id="dish-info">
                         <h3 id="dish-name"></h3>
                         <p id="dish-description"></p>
@@ -62,6 +67,23 @@
                     </div>
                 </div>
             </div>
+
+            <div class="box" id="feature-buttons">
+                <h2>Features</h2>
+                <div class="controls">
+                    <button id="daily-tracker-btn"><i class="fas fa-calendar-day"></i> Daily Tracker</button>
+                    <button id="scan-barcode-btn"><i class="fas fa-barcode"></i> Scan Barcode</button>
+                    <button id="recipe-suggestions-btn"><i class="fas fa-utensils"></i> Get Recipes</button>
+                    <button id="detailed-report-btn"><i class="fas fa-chart-pie"></i> Detailed Report</button>
+                    <button id="search-ingredient-btn"><i class="fas fa-search"></i> Search Ingredient</button>
+                    <button id="share-btn"><i class="fas fa-share-alt"></i> Share</button>
+                </div>
+            </div>
+
+            <div class="box" id="history-container">
+                <h3>Analysis History</h3>
+                <!-- History items will be loaded here -->
+            </div>
         </main>
 
         <footer>
@@ -70,6 +92,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
