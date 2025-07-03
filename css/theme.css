@@ -1,0 +1,98 @@
+:root {
+    --primary-color: #4CAF50;
+    --primary-color-light: #81C784;
+    --secondary-color: #2196F3;
+    --background-color: #f8f9fa;
+    --surface-color: #ffffff;
+    --text-color-dark: #212529;
+    --text-color-light: #6c757d;
+    --border-color: #e0e0e0;
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-medium: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-dark: 0 8px 25px rgba(0,0,0,0.15);
+    --font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius-small: 8px;
+    --border-radius-medium: 12px;
+    --spacing-unit: 1rem;
+}
+
+body.dark-mode {
+    --primary-color: #66bb6a;
+    --primary-color-light: #4CAF50;
+    --secondary-color: #64B5F6;
+    --background-color: #1a1a1a;
+    --surface-color: #2c2c2c;
+    --text-color-dark: #e0e0e0;
+    --text-color-light: #b0b0b0;
+    --border-color: #444444;
+    --shadow-light: 0 2px 4px rgba(0,0,0,0.2);
+    --shadow-medium: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switcher .fas {
+    font-size: 1.3rem;
+    color: var(--text-color-light);
+    margin: 0 0.7rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.theme-switcher .fas:hover {
+    color: var(--primary-color);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 30px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(25px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+} 

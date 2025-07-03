@@ -1,0 +1,217 @@
+header {
+    background-color: var(--surface-color);
+    box-shadow: var(--shadow-light);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+main.container.main-content-aligned {
+    flex: 1;
+    padding: 0.5rem 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: var(--surface-color);
+    padding: 1rem 0;
+    text-align: center;
+    color: var(--text-color-light);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+/* Moved from styles.css */
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    z-index: -1;
+    transition: background-color 0.3s;
+}
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeOut 2s forwards 1s;
+}
+
+#app {
+    animation: fadeIn 1s forwards 2s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 0.5rem 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-unit);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.box.aligned-box {
+    width: 100%;
+    max-width: 800px;
+}
+
+main.container {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .theme-switcher {
+        justify-content: center;
+        width: 100%;
+    }
+
+    main.container.main-content-aligned {
+        padding: 0.5rem 10px;
+    }
+
+    .box.aligned-box {
+        padding: 1.5rem 1rem;
+        max-width: 95%;
+    }
+
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .button, button {
+        width: 100%;
+        padding: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .theme-switcher .fas {
+        font-size: 1.1rem;
+        margin: 0 0.5rem;
+    }
+
+    .switch {
+        width: 45px;
+        height: 25px;
+    }
+
+    .slider:before {
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(20px);
+    }
+
+    .box {
+        padding: 1rem 0.8rem;
+    }
+
+    .upload-box {
+        padding: 1rem;
+    }
+
+    .upload-box .icon {
+        font-size: 2.5rem;
+    }
+
+    .upload-box p {
+        font-size: 0.9rem;
+    }
+
+    .button, button {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    #history-container li img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    #history-container li strong {
+        font-size: 1rem;
+    }
+
+    #history-container li small {
+        font-size: 0.85rem;
+    }
+} 

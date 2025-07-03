@@ -1,0 +1,48 @@
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes loadingAnimation {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fade-border {
+    0% { border-color: var(--primary-color); }
+    50% { border-color: var(--secondary-color); }
+    100% { border-color: var(--primary-color); }
+}
+
+.pulse-animation {
+    animation: pulse 0.7s infinite;
+}
+
+#splash-screen {
+    animation: fadeOut 2s forwards 1s;
+}
+
+#app {
+    animation: fadeIn 1s forwards 2s;
+}

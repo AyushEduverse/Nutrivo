@@ -1,6 +1,12 @@
 let stream;
 
 export function initializeCamera(analyzeImage) {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        alert('Camera is not supported in this browser.');
+        const startCameraButton = document.getElementById('start-camera');
+        if (startCameraButton) startCameraButton.disabled = true;
+        return;
+    }
     const startCameraButton = document.getElementById('start-camera');
     const captureImageButton = document.getElementById('capture-image');
     const uploadImageInput = document.getElementById('upload-image');
@@ -35,6 +41,14 @@ export function initializeCamera(analyzeImage) {
 
         // Stop camera stream
         stream.getTracks().forEach(track => track.stop());
+
+        // Show image in analysis preview with animation
+        const analysisImage = document.getElementById('analysis-image');
+        if (analysisImage) {
+            analysisImage.src = imageDataURL;
+            analysisImage.classList.remove('hidden');
+            analysisImage.classList.add('visible');
+        }
 
         analyzeImage(imageDataURL);
     });

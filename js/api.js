@@ -7,7 +7,7 @@ export async function analyzeImageApi(imageDataURL) {
     const requestBody = {
         "contents": [{
             "parts": [
-                { "text": "Analyze this food image. Provide the dish name, a short description, a list of estimated nutritional values (like Calories, Protein, Carbs, Fat, Fiber, Sugar) with quantities per 100g, and some AI-driven advice for someone eating this dish. Format the output as a JSON object with keys: 'dishName', 'description', 'nutrition', and 'advice'. The 'nutrition' value should be an array of objects, each with 'name' and 'value' keys." },
+                { "text": "Analyze this food image. Provide the dish name, a short description, a list of estimated nutritional values (like Calories, Protein, Carbs, Fat, Fiber, Sugar) with quantities per 100g, and some AI-driven advice for someone eating this dish. Format the output as a JSON object with keys: 'dishName', 'description', 'nutrition', and 'advice'. The 'nutrition' value should be an array of objects, each with 'name' and 'value' keys. Respond ONLY with the JSON object, no extra text or markdown." },
                 { "inline_data": { "mime_type": "image/jpeg", "data": base64ImageData } }
             ]
         }]
@@ -37,12 +37,21 @@ export async function analyzeImageApi(imageDataURL) {
     }
     
     const content = data.candidates[0].content.parts[0].text;
+    console.log('Gemini API raw response:', content);
     
+    // Try to extract JSON from the response robustly
+    let cleanedJsonString = content.trim();
+    // Remove markdown code block if present
+    cleanedJsonString = cleanedJsonString.replace(/```json|```/g, '').trim();
+    // Try to extract JSON object if extra text is present
+    const jsonMatch = cleanedJsonString.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+        cleanedJsonString = jsonMatch[0];
+    }
     try {
-        const cleanedJsonString = content.replace(/```json|```/g, '').trim();
         return JSON.parse(cleanedJsonString);
     } catch (jsonError) {
-        console.error('Failed to parse JSON response:', jsonError);
+        console.error('Failed to parse JSON response:', jsonError, cleanedJsonString);
         throw new Error(`Could not process the AI's response. Raw response: ${content}`);
     }
 }
