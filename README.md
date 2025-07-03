@@ -101,7 +101,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 *(Note: You might need to create a LICENSE.md file in your project root if it doesn't exist.)*
 
 ## Author
--   [Ayush](https://github.com/your-github-profile) *(Replace `your-github-profile` with your actual GitHub profile link)*
+-   [Ayush Gupta] https://github.com/AyushEduverse
 
 ---
 *Thank you for exploring Nutrivo! We hope it assists you in your health and nutrition journey.*
