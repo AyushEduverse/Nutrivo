@@ -14,11 +14,7 @@ initializeUI();
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                const img = new Image();
-                img.onload = () => {
-                    handleImageAnalysis(img);
-                };
-                img.src = e.target.result;
+                handleImageAnalysis(e.target.result);
             };
             reader.readAsDataURL(file);
         }
@@ -26,27 +22,6 @@ initializeUI();
 
 // Add accessibility attributes
 addAccessibilityAttributes();
-
-// Event listeners for new feature buttons
-document.getElementById('daily-tracker-btn').addEventListener('click', () => {
-    alert('Daily Nutrition Tracking feature coming soon!');
-});
-
-document.getElementById('scan-barcode-btn').addEventListener('click', () => {
-    alert('Barcode Scanner feature coming soon!');
-});
-
-document.getElementById('recipe-suggestions-btn').addEventListener('click', () => {
-    alert('AI-Powered Recipe Suggestions feature coming soon!');
-});
-
-document.getElementById('detailed-report-btn').addEventListener('click', () => {
-    alert('Detailed Nutrition Reports feature coming soon!');
-});
-
-document.getElementById('search-ingredient-btn').addEventListener('click', () => {
-    alert('Search by Ingredient feature coming soon!');
-});
 
 document.getElementById('share-btn').addEventListener('click', () => {
     shareAnalysisResult();
@@ -77,6 +52,20 @@ async function handleImageAnalysis(imageDataURL) {
         const data = await analyzeImageApi(imageDataURL);
         displayResults(data);
         saveToHistory(data, imageDataURL);
+
+        // Display the image in the analysis-image container
+        const analysisImage = document.getElementById('analysis-image');
+        if (analysisImage) {
+            analysisImage.src = imageDataURL;
+            analysisImage.classList.remove('hidden'); // Ensure image is visible
+            analysisImage.classList.add('uploaded-image-border'); // Add border styling
+        }
+
+        // Hide the upload box
+        const uploadBox = document.getElementById('upload-box');
+        if (uploadBox) {
+            uploadBox.classList.add('hidden'); // Hide the upload box
+        }
     } catch (error) {
         displayError(error.message);
     } finally {

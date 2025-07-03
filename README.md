@@ -4,6 +4,8 @@ Nutrivo is a web application that helps users analyze the nutritional content of
 
 ## Features
 
+- **Version:** 1.0.0
+
 - **Image Upload & Camera Capture:**
   - Upload a food image from your device or capture one using your webcam.
 - **AI Analysis:**
